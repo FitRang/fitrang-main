@@ -1,0 +1,11 @@
+include:
+  - docker-compose.kafka.yml
+  - docker-compose.monitoring.yml
+  - docker-compose.services.yml
+
+volumes:
+  redis-data:
+
+networks:
+  fitrang-net:
+    driver: bridge

@@ -1,0 +1,30 @@
+services:
+  profile-service:
+    container_name: profile-service
+    build:
+      context: ./profile-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - broker
+    networks:
+      - fitrang-net
+
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - fitrang-net
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+
+networks:
+  fitrang-net:
