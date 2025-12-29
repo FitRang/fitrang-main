@@ -6,3 +6,4 @@ indexing-worker/
 infrastructure/
 notification-service/
 profile-service/
+load-tests/

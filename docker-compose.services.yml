@@ -1,4 +1,18 @@
 services:
+  federation-service:
+    container_name: federation-service
+    build:
+      context: ./federation
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    environment:
+      APOLLO_GRAPH_REF: FitRang@current
+      APOLLO_KEY: service:FitRang:dERWDVICawgON5zrA3jTfw
+
+    networks:
+      - fitrang-net
+
   profile-service:
     container_name: profile-service
     build:
