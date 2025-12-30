@@ -11,5 +11,6 @@ git clone https://github.com/FitRang/fanout-consumer
 git clone https://github.com/FitRang/federation
 git clone https://github.com/FitRang/notification-service
 git clone https://github.com/FitRang/load-tests
+git clone https://github.com/FitRang/coprocessor
 
 echo "All repositories cloned successfully"

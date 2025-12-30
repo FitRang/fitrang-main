@@ -1,4 +1,17 @@
 services:
+  auth-coprocessor:
+    container_name: auth-coprocessor
+    build:
+      context: ./coprocessor
+      dockerfile: Dockerfile
+    ports:
+      - "4005:4005"
+    environment:
+      FIREBASE_SERVICE_ACCOUNT: firebase-service-account.json
+
+    networks:
+      - fitrang-net
+
   federation-service:
     container_name: federation-service
     build:
@@ -6,6 +19,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4000:4000"
+    depends_on:
+      - auth_coprocessor
     environment:
       APOLLO_GRAPH_REF: FitRang@current
       APOLLO_KEY: service:FitRang:dERWDVICawgON5zrA3jTfw
