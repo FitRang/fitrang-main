@@ -19,11 +19,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4000:4000"
-    depends_on:
-      - auth_coprocessor
     environment:
       APOLLO_GRAPH_REF: FitRang@current
-      APOLLO_KEY: service:FitRang:dERWDVICawgON5zrA3jTfw
+      APOLLO_KEY: service:FitRang:OzFQDtB8w38iqL8WZeBOGw
 
     networks:
       - fitrang-net
@@ -39,6 +37,20 @@ services:
     env_file:
       - .env-example
     depends_on:
+      - redis
+      - broker
+    networks:
+      - fitrang-net
+
+  indexing-worker:
+    container_name: indexing-worker
+    build:
+      context: ./indexing-worker
+      dockerfile: Dockerfile
+    env_file:
+      - .env-example
+    depends_on:
+      - profile-service
       - redis
       - broker
     networks:
