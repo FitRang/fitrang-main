@@ -1,16 +1,16 @@
 services:
-  auth-coprocessor:
-    container_name: auth-coprocessor
-    build:
-      context: ./coprocessor
-      dockerfile: Dockerfile
-    ports:
-      - "4005:4005"
-    environment:
-      FIREBASE_SERVICE_ACCOUNT: firebase-service-account.json
-
-    networks:
-      - fitrang-net
+  # auth-coprocessor:
+  #   container_name: auth-coprocessor
+  #   build:
+  #     context: ./coprocessor
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "4005:4005"
+  #   environment:
+  #     FIREBASE_SERVICE_ACCOUNT: firebase-service-account.json
+  #
+  #   networks:
+  #     - fitrang-net
 
   federation-service:
     container_name: federation-service
@@ -53,6 +53,7 @@ services:
       - profile-service
       - redis
       - broker
+      - elasticsearch
     networks:
       - fitrang-net
 

@@ -2,9 +2,11 @@ include:
   - docker-compose.kafka.yml
   - docker-compose.monitoring.yml
   - docker-compose.services.yml
+  - docker-compose.elastic.yml
 
 volumes:
   redis-data:
+  es-data:
 
 networks:
   fitrang-net:
