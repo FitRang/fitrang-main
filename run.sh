@@ -12,5 +12,7 @@ git clone https://github.com/FitRang/federation
 git clone https://github.com/FitRang/notification-service
 git clone https://github.com/FitRang/load-tests
 git clone https://github.com/FitRang/coprocessor
+git clone https://github.com/FitRang/fitrang-web
+git clone https://github.com/FitRang/fitrang-extension
 
 echo "All repositories cloned successfully"
