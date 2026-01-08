@@ -19,6 +19,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4000:4000"
+    ulimits:
+      nofile:
+        soft: 100000
+        hard: 100000
     environment:
       APOLLO_GRAPH_REF: FitRang@current
       APOLLO_KEY: 
@@ -42,10 +46,40 @@ services:
     networks:
       - fitrang-net
 
+  notification-service:
+    container_name: notification-service
+    build:
+      context: ./notification-service
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    env_file:
+      - .env-example
+    depends_on:
+      - redis
+      - broker
+    networks:
+      - fitrang-net
+
   indexing-worker:
     container_name: indexing-worker
     build:
       context: ./indexing-worker
+      dockerfile: Dockerfile
+    env_file:
+      - .env-example
+    depends_on:
+      - profile-service
+      - redis
+      - broker
+      - elasticsearch
+    networks:
+      - fitrang-net
+
+  fanout-consumer:
+    container_name: fanout-consumer
+    build:
+      context: ./fanout-consumer
       dockerfile: Dockerfile
     env_file:
       - .env-example
