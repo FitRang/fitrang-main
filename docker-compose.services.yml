@@ -1,4 +1,13 @@
 services:
+
+  kong:
+    container_name: kong
+    build:
+      context: ./kong
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+
   federation-service:
     container_name: federation-service
     build:
